@@ -1,0 +1,40 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-learn_with_me
+    environment:
+      POSTGRES_USER: strapi-learn-with-me
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: learn-with-me
+    ports:
+      - '1234:5432'
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'pg_isready',
+          '-U',
+          'strapi-learn_with_me',
+          '-d',
+          'learn_with_me',
+        ]
+      interval: 5s
+      retries: 5
+    restart: always
+  strapi:
+    env_file:
+      - .env
+    container_name: strapi-learn-with-me
+    image: node:18.13.0
+    working_dir: /app
+    volumes:
+      - ./:/app
+    # In host mode is not needed bind ports
+    network_mode: host
+    user: 1000:1000
+    tty: true
+    depends_on:
+      - postgres
+volumes:
+  postgres-db-volume:

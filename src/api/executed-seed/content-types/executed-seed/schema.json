@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "executed_seeds",
+  "info": {
+    "singularName": "executed-seed",
+    "pluralName": "executed-seeds",
+    "displayName": "executed_seed",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "file_name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
