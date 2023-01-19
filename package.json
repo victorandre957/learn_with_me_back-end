@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "docker:up": "docker-compose run strapi bash",
+    "docker:up": "docker-compose run --service-ports strapi bash",
     "docker:down": "docker-compose down",
     "docker:reset": "docker-compose down --volume --remove-orphans",
     "test": "NODE_ENV=test jest --forceExit --detectOpenHandles",

@@ -30,8 +30,8 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-    # In host mode is not needed bind ports
-    network_mode: host
+    ports:
+      - '1337:1337'
     user: 1000:1000
     tty: true
     depends_on:

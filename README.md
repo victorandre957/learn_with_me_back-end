@@ -31,16 +31,19 @@ We will develop inside a container with vscode, so you will need:
 
 1. Copy `./.env.example` to `./.env`
 2. Execute `docker-compose down --volumes --remove-orphans`
-3. Run `docker-compose run strapi bash`
+3. Run `docker-compose run docker-compose run --service-ports strapi bash strapi bash`
 
 This will create 2 services: the DB for development and the strapi application.
 
 And will attach you to the container with the correct yarn version.
 
+NOTE: The flag `--service-ports` must be used on running the command `run` for the
+ports binding to work.
+
 Inside the container run
 
 ```
-yarn install
+yarn ci
 ```
 
 and
