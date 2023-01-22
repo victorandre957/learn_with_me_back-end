@@ -2,7 +2,7 @@ version: '3'
 services:
   postgres:
     image: postgres:15
-    container_name: postgres-learn_with_me
+    container_name: postgres-learn-with-me
     environment:
       POSTGRES_USER: strapi-learn-with-me
       POSTGRES_PASSWORD: 123456
@@ -15,9 +15,9 @@ services:
           'CMD',
           'pg_isready',
           '-U',
-          'strapi-learn_with_me',
+          'strapi-learn-with-me',
           '-d',
-          'learn_with_me',
+          'learn-with-me',
         ]
       interval: 5s
       retries: 5

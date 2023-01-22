@@ -1,6 +1,6 @@
 # API
 
-This project is the API with strapi for the learn_with_me.
+This project is the API with strapi for the learn-with-me.
 
 The strapi instructions are on `./strapi_README` file.
 
@@ -31,7 +31,7 @@ We will develop inside a container with vscode, so you will need:
 
 1. Copy `./.env.example` to `./.env`
 2. Execute `docker-compose down --volumes --remove-orphans`
-3. Run `docker-compose run docker-compose run --service-ports strapi bash strapi bash`
+3. Run `docker-compose run strapi bash`
 
 This will create 2 services: the DB for development and the strapi application.
 
@@ -43,7 +43,7 @@ ports binding to work.
 Inside the container run
 
 ```
-yarn ci
+yarn install
 ```
 
 and
