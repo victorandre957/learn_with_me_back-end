@@ -1,16 +1,16 @@
 const supertest = require('supertest');
 
-describe('Test login - skip otp', () => {
+describe('Test login', () => {
   let secret = null;
 
   beforeAll(async (done) => {
-    const loginCustomer = await supertest(strapi.server.httpServer)
+    const loginAluno= await supertest(strapi.server.httpServer)
       .post('/api/auth/validate-access')
       .send({
         identifier: 'aluno@strapi.com',
         password: '123456',
       });
-    secret = loginCustomer.body.secret;
+    secret = loginAluno.body.secret;
     done();
   });
 
@@ -28,7 +28,7 @@ describe('Test login - skip otp', () => {
   it('Correct username and password returns secret.', async () => {
     const request = supertest(strapi.server.httpServer);
     const response = await request.post('/api/auth/validate-access').send({
-      identifier: 'administrador@strapi.com',
+      identifier: 'admin@strapi.com',
       password: '123456',
     });
     expect(response.body.secret).toBeDefined();
@@ -37,7 +37,7 @@ describe('Test login - skip otp', () => {
   it('Returns message "Invalid identifier or password" if password or email is incorrect.', async () => {
     const request = supertest(strapi.server.httpServer);
     const response = await request.post('/api/auth/validate-access').send({
-      identifier: 'professor@2fa.com',
+      identifier: 'professor@strapi.com',
       password: '000212',
     });
     const messageError = response.body.error.message;

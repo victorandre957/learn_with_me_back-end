@@ -1,7 +1,7 @@
 export default {}
 const { roles } = require("./person_roles");
 const { setSeqValue } = require("../utils/database_helpers");
-const { hashPassword } = require('../../src/api/user/services/auth');
+const { hashPassword } = require('../../src/api/person/services/auth');
 const password = "123456";
 const passwordHs = hashPassword(password);
 

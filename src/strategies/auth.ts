@@ -13,13 +13,12 @@ const authenticate = async (ctx) => {
       .service('api::person.auth')
       .validateToken('login', token);
 
-    if (personId === undefined && personIdRefLink === undefined) {
+    if (personId === undefined) {
       return { authenticated: false };
     }
     // Access login
     const person = await strapi
       .service('api::person.person')
-      .getNormalizedpersonData(personId);
 
     if (!person) {
       return { error: 'Invalid credentials' };
@@ -39,19 +38,7 @@ const authenticate = async (ctx) => {
   };
 };
 
-const verify = async (auth, config) => {
-  const scope = Array.isArray(config.scope) ? config.scope[0] : config.scope;
-
-  if (!allowedRequest(auth.credentials?.person_roles, scope)) {
-    throw new ValidationPermissionError(
-      'Access permission denied.',
-      scope.substring(5).split('.', 1)
-    );
-  }
-};
-
 module.exports = {
   authenticate,
-  verify,
   name: 'person authentication',
 };

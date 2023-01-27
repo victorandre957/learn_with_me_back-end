@@ -1,10 +1,10 @@
 'use strict';
 export default {}
 /**
- *  user controller
+ *  person controller
  */
 
-const { validateEmailBodyAccess } = require('./validations/user');
+const { validateEmailBodyAccess } = require('./validations/person');
 const {
   isCustomerLinkSuitability,
 } = require('../../../utils/check-permission');
@@ -13,15 +13,15 @@ const { validatePasswordBodySchema } = require('./validations/auth');
 const { allowColumnAccess } = require('../../../utils/allowColumnAccess');
 const { rolesOf } = require('../../../utils/columnPermission');
 
-module.exports = createCoreController('api::user.user', ({ strapi }) => ({
+module.exports = createCoreController('api::person.person', ({ strapi }) => ({
   async create(ctx) {
-    // only admin can setup the user roles, for the rest the default role will be "customer"
-    allowColumnAccess({ user_roles: rolesOf.administrator, customer: [], collaborator: [] }, ctx);
+    // only admin can setup the person roles, for the rest the default role will be "customer"
+    allowColumnAccess({ person_roles: rolesOf.administrator, customer: [], collaborator: [] }, ctx);
     return super.create(ctx);
   },
   async update(ctx) {
     allowColumnAccess(
-      { user_roles: rolesOf.administrator, customer: [], collaborator: [] },
+      { person_roles: rolesOf.administrator, customer: [], collaborator: [] },
       ctx
     );
     return super.update(ctx);

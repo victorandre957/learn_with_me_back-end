@@ -1,15 +1,12 @@
+const fs = require('fs');
 const { setupStrapi, cleanupStrapi } = require('./helpers/strapi');
 
-//@ts-ignore
-beforeAll(async (done) => {
+beforeAll(async () => {
   await setupStrapi();
-  done();
 });
 
-//@ts-ignore
-afterAll(async (done) => {
+afterAll(async () => {
   await cleanupStrapi();
-  done();
 });
 
 it('strapi is defined', () => {

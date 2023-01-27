@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const authStrategy = require('./strategies/auth.js');
 const { initSeeders } = require('../database/seeders');
 exports.default = {
     /**
@@ -8,7 +9,9 @@ exports.default = {
      *
      * This gives you an opportunity to extend code.
      */
-    register({ strapi }) { },
+    register({ strapi }) {
+        strapi.container.get('auth').register('content-api', authStrategy);
+    },
     /**
      * An asynchronous bootstrap function that runs before
      * your application gets started.
