@@ -1,4 +1,5 @@
 import { Strapi } from "@strapi/strapi";
+const authStrategy = require('./strategies/auth.js');
 const { initSeeders } = require('../database/seeders');
 
 export default {
@@ -8,7 +9,9 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register( { strapi }: { strapi: Strapi }) {},
+  register( { strapi }: { strapi: Strapi }) {
+    strapi.container.get('auth').register('content-api', authStrategy);
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
