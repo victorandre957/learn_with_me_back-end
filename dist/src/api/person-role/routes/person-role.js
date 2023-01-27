@@ -1,7 +1,10 @@
-"use strict";
-/**
- * person-role router
- */
+'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const strapi_1 = require("@strapi/strapi");
-exports.default = strapi_1.factories.createCoreRouter('api::person-role.person-role');
+exports.default = {};
+/**
+ * person-role router.
+ */
+const { createCoreRouter } = require('@strapi/strapi').factories;
+module.exports = createCoreRouter('api::person-role.person-role', {
+    only: ['find', 'findOne'],
+});

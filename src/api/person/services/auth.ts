@@ -5,6 +5,7 @@ export default {}
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const ms = require('ms');
 
 require('dotenv').config();
 
@@ -32,10 +33,38 @@ const decodeJwt = (token) => {
   return decode?.payload;
 };
 
+const generateToken = (scope, userId, expiresIn = '15m') => {
+  if (!expiresIn) {
+    const token = jwt.sign({ scope, userId }, process.env.JWT_SECRET);
+    return {
+      token,
+    };
+  }
+  const tempToken = jwt.sign({ scope, userId }, process.env.JWT_SECRET, {
+    expiresIn,
+  });
+  // date where time will expire
+  const expiresAt = new Date(Date.now() + ms(expiresIn));
+  return {
+    tempToken,
+    expiresAt,
+  };
+};
+
+const getValidSectionData = async (userId, sessionExpTime = '12h') => {
+  const { tempToken } = generateToken('login', userId, sessionExpTime);
+
+  return {
+    jwt: tempToken,
+  };
+}
+
 
 module.exports = {
   decodeJwt,
   isHashed,
   hashPassword,
   compare,
+  getValidSectionData,
+  generateToken,
 };

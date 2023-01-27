@@ -1,7 +1,11 @@
+'use strict';
+export default {}
 /**
- * person-role router
+ * person-role router.
  */
 
-import { factories } from '@strapi/strapi';
+const { createCoreRouter } = require('@strapi/strapi').factories;
 
-export default factories.createCoreRouter('api::person-role.person-role');
+module.exports = createCoreRouter('api::person-role.person-role', {
+  only: ['find', 'findOne'],
+});
