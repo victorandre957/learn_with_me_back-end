@@ -1,4 +1,4 @@
-import { Strapi } from '@strapi/strapi';
+import { Strapi } from "@strapi/strapi";
 const { initSeeders } = require('../database/seeders');
 
 export default {
